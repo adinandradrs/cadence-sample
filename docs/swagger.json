@@ -1,0 +1,149 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "This is a sandbox APIs for Cadence Client",
+        "title": "Sandbox API - Cadence Client Service",
+        "termsOfService": "https://adinandra.dharmasurya.id",
+        "contact": {
+            "name": "Adinandra Dharmasurya",
+            "url": "https://adinandra.dharmasurya.id",
+            "email": "adinandra.dharmasurya@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "0.1"
+    },
+    "basePath": "/v1",
+    "paths": {
+        "/v1/decision": {
+            "post": {
+                "description": "API to give a decision for registration form",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Register APIs"
+                ],
+                "summary": "API Register Decision",
+                "parameters": [
+                    {
+                        "description": "Approval Request Payload",
+                        "name": "payload",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.ApprovalRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Request successfuly processed"
+                    },
+                    "400": {
+                        "description": "Got a bad payload"
+                    },
+                    "401": {
+                        "description": "Unauthorized access"
+                    },
+                    "403": {
+                        "description": "Forbidden access"
+                    },
+                    "404": {
+                        "description": "Data is not found"
+                    },
+                    "500": {
+                        "description": "Something went wrong"
+                    }
+                }
+            }
+        },
+        "/v1/register": {
+            "post": {
+                "description": "API to register an user",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Register APIs"
+                ],
+                "summary": "API Register Form",
+                "parameters": [
+                    {
+                        "description": "Register Request Payload",
+                        "name": "payload",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.RegisterRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Request successfuly processed"
+                    },
+                    "400": {
+                        "description": "Got a bad payload"
+                    },
+                    "401": {
+                        "description": "Unauthorized access"
+                    },
+                    "403": {
+                        "description": "Forbidden access"
+                    },
+                    "404": {
+                        "description": "Data is not found"
+                    },
+                    "500": {
+                        "description": "Something went wrong"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "model.ApprovalRequest": {
+            "type": "object",
+            "properties": {
+                "activity_id": {
+                    "type": "string"
+                },
+                "is_approved": {
+                    "type": "boolean"
+                },
+                "workflow_id": {
+                    "type": "string"
+                },
+                "workflow_run_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "model.RegisterRequest": {
+            "type": "object",
+            "properties": {
+                "email": {
+                    "type": "string",
+                    "example": "test@email.net"
+                },
+                "fullname": {
+                    "type": "string",
+                    "example": "test user"
+                },
+                "password": {
+                    "type": "string",
+                    "example": "mysecret123"
+                }
+            }
+        }
+    }
+}

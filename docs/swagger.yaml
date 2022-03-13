@@ -1,0 +1,99 @@
+basePath: /v1
+definitions:
+  model.ApprovalRequest:
+    properties:
+      activity_id:
+        type: string
+      is_approved:
+        type: boolean
+      workflow_id:
+        type: string
+      workflow_run_id:
+        type: string
+    type: object
+  model.RegisterRequest:
+    properties:
+      email:
+        example: test@email.net
+        type: string
+      fullname:
+        example: test user
+        type: string
+      password:
+        example: mysecret123
+        type: string
+    type: object
+info:
+  contact:
+    email: adinandra.dharmasurya@gmail.com
+    name: Adinandra Dharmasurya
+    url: https://adinandra.dharmasurya.id
+  description: This is a sandbox APIs for Cadence Client
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: https://adinandra.dharmasurya.id
+  title: Sandbox API - Cadence Client Service
+  version: "0.1"
+paths:
+  /v1/decision:
+    post:
+      consumes:
+      - application/json
+      description: API to give a decision for registration form
+      parameters:
+      - description: Approval Request Payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/model.ApprovalRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Request successfuly processed
+        "400":
+          description: Got a bad payload
+        "401":
+          description: Unauthorized access
+        "403":
+          description: Forbidden access
+        "404":
+          description: Data is not found
+        "500":
+          description: Something went wrong
+      summary: API Register Decision
+      tags:
+      - Register APIs
+  /v1/register:
+    post:
+      consumes:
+      - application/json
+      description: API to register an user
+      parameters:
+      - description: Register Request Payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/model.RegisterRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Request successfuly processed
+        "400":
+          description: Got a bad payload
+        "401":
+          description: Unauthorized access
+        "403":
+          description: Forbidden access
+        "404":
+          description: Data is not found
+        "500":
+          description: Something went wrong
+      summary: API Register Form
+      tags:
+      - Register APIs
+swagger: "2.0"
